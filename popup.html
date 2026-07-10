@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopee Shop Rating Exporter</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <h1>Shop Rating Exporter</h1>
+      <p class="hint">Set Shopee's filters first. The export includes every review currently shown by those filters.</p>
+      <p id="status" class="status">Checking the current tab…</p>
+      <div class="actions">
+        <button id="start" class="primary">Export all pages</button>
+        <button id="pause" disabled>Pause</button>
+        <button id="stop" disabled>Stop</button>
+      </div>
+      <p class="footnote">The file is named using the collection date and time. Blank fields stay blank.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

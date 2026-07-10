@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee Shop Rating Exporter",
+  "version": "0.1.0",
+  "description": "Exports the reviews visible in Shopee Seller Centre Shop Rating to one XLSX file.",
+  "permissions": ["activeTab", "downloads"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Shopee Shop Rating Exporter",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://seller.shopee.co.id/portal/settings/shop/rating*"],
+      "js": ["xlsx.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
