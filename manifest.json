@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Shopee Shop Rating Exporter",
   "version": "0.1.0",
-  "description": "Exports the reviews visible in Shopee Seller Centre Shop Rating to one XLSX file.",
+  "description": "Ekspor ulasan Shopee Seller Centre Penilaian Toko ke XLSX / Exports Shopee Seller Centre Shop Rating reviews to XLSX.",
   "permissions": ["activeTab", "downloads"],
   "background": {
     "service_worker": "background.js"

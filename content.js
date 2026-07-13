@@ -198,7 +198,7 @@
         if (cancelRequested) break;
         await expandReviewMessages();
         const pageRecords = extractCurrentPage();
-        if (!pageRecords.length) throw new Error("No review cards found. Reload the Shop Rating page and try again.");
+        if (!pageRecords.length) throw new Error("Kartu ulasan tidak ditemukan. Muat ulang halaman Penilaian Toko dan coba lagi. / No review cards found. Reload the Shop Rating page and try again.");
         pageRecords.forEach((record) => records.set(record.order_id, record));
         state.reviewCount = records.size;
         state.pageCount += 1;
@@ -209,21 +209,21 @@
         if (!next) break;
         next.click();
         const changed = await waitForNewPage(previous);
-        if (!changed) throw new Error("The next review page did not load. Please retry from the Shop Rating page.");
+        if (!changed) throw new Error("Halaman ulasan berikutnya tidak dimuat. Silakan coba lagi dari halaman Penilaian Toko. / The next review page did not load. Please retry from the Shop Rating page.");
       }
       if (cancelRequested) {
         state.phase = "idle";
-        state.message = "Export stopped.";
+        state.message = "Ekspor dihentikan. / Export stopped.";
       } else {
         const fileUrl = ShopeeXlsx.createUrl(COLUMNS, [...records.values()]);
         const result = await chrome.runtime.sendMessage({ type: "download_xlsx", url: fileUrl, filename: collectionFilename() });
         setTimeout(() => URL.revokeObjectURL(fileUrl), 60_000);
-        if (!result || result.error) throw new Error(result?.error || "Chrome could not start the XLSX download.");
+        if (!result || result.error) throw new Error(result?.error || "Chrome tidak dapat memulai unduhan XLSX. / Chrome could not start the XLSX download.");
         state.phase = "done";
       }
     } catch (error) {
       state.phase = "error";
-      state.message = error.message || "The export stopped unexpectedly.";
+      state.message = error.message || "Ekspor berhenti tanpa diduga. / The export stopped unexpectedly.";
     }
     publish();
   }
