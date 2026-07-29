@@ -76,17 +76,10 @@
     return firstByText(card, (text) => DATE_PATTERN.test(text));
   }
 
-  function getReviewMessage(card, dateNode) {
-    if (!dateNode || !dateNode.parentElement) return "";
-    const block = dateNode.parentElement;
-    const parts = [];
-    for (const child of block.children) {
-      if (child === dateNode) break;
-      if (child.matches(".eds-react-rate, ul, img, video")) continue;
-      const text = clean(child.textContent).replace(/\s*More$/, "");
-      if (text && text !== "Seller Response:") parts.push(text);
-    }
-    const message = parts.join("\n");
+  function getReviewMessage(card) {
+    // Read only Shopee's review-text element. The previous broad fallback read
+    // product information when a review card had no buyer message.
+    const message = clean(card.querySelector("div[class*='whitespace-pre-wrap']")?.textContent).replace(/\s*More$/, "");
     // Shopee Indonesia may expose only a visual truncation such as
     // "Bagus...Lainnya" instead of the full review. Do not export that
     // incomplete placeholder as though it were a real review message.
@@ -116,7 +109,7 @@
         star: getStar(card),
         review_date: dateNode ? clean(dateNode.textContent) : "",
         order_id,
-        review_message: getReviewMessage(card, dateNode),
+        review_message: getReviewMessage(card),
         seller_response: getSellerResponse(card)
       });
     });
