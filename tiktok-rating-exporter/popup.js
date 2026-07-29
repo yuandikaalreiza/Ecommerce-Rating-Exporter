@@ -1,4 +1,4 @@
-const TIKTOK_RATING_URL = /^https:\/\/(seller-id\.tiktok\.com|seller\.tiktok\.com)\/product\/rating/;
+const TIKTOK_RATING_URL = /^https:\/\/(seller-id\.tiktok\.com|seller\.tiktok\.com|seller-id\.tokopedia\.com)\/product\/rating/;
 
 const ui = {
   status: document.querySelector("#status"),

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TikTok Rating Exporter / Ekspor Rating TikTok",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ekspor Rating Produk TikTok Shop ke XLSX / Exports TikTok Shop product ratings to XLSX.",
   "permissions": ["activeTab", "downloads"],
   "background": {
@@ -15,7 +15,8 @@
     {
       "matches": [
         "https://seller-id.tiktok.com/product/rating*",
-        "https://seller.tiktok.com/product/rating*"
+        "https://seller.tiktok.com/product/rating*",
+        "https://seller-id.tokopedia.com/product/rating*"
       ],
       "js": ["xlsx.js", "content.js"],
       "run_at": "document_idle"

@@ -1,8 +1,8 @@
 # TikTok Rating Exporter / Ekspor Rating TikTok
 
-Ekstensi Chrome terpisah untuk mengekspor **TikTok Shop Seller Center → Rating Produk** ke satu file XLSX. Muat folder ini sebagai ekstensi terpisah dari Shopee: `tiktok-rating-exporter`.
+Ekstensi Chrome terpisah untuk mengekspor **TikTok Shop Seller Center → Rating Produk** ke satu file XLSX. Ekstensi mendukung halaman TikTok Shop yang dikelola oleh Tokopedia di `seller-id.tokopedia.com`. Muat folder ini sebagai ekstensi terpisah dari Shopee: `tiktok-rating-exporter`.
 
-A separate Chrome Extension that exports **TikTok Shop Seller Center → Product Rating** to one XLSX file. Load this folder separately from Shopee: `tiktok-rating-exporter`.
+A separate Chrome Extension that exports **TikTok Shop Seller Center → Product Rating** to one XLSX file. It supports TikTok Shop pages managed by Tokopedia at `seller-id.tokopedia.com`. Load this folder separately from Shopee: `tiktok-rating-exporter`.
 
 ## Kolom ekspor / Exported columns
 
