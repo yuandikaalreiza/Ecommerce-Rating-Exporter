@@ -8,9 +8,9 @@ A separate Chrome Extension that exports **TikTok Shop Seller Center → Product
 
 `product_name`, `product_variation`, `buyer_id`, `star`, `review_date`, `order_id`, `review_message`, `seller_response`
 
-`product_variation` menggunakan nilai SKU TikTok. Nilai yang tidak tersedia akan kosong. `order_id` selalu ditulis sebagai **teks** dalam XLSX—bukan angka—sehingga ID Pesanan TikTok 18 digit tetap utuh dan Excel tidak mengganti empat digit terakhir dengan nol.
+`product_variation` menggunakan nilai SKU TikTok. Nilai yang tidak tersedia akan kosong. `review_date` hanya berisi tanggal ulasan; informasi tambahan seperti `Diubah 5 hari yang lalu` tidak diekspor. `order_id` selalu ditulis sebagai **teks** dalam XLSX—bukan angka—sehingga ID Pesanan TikTok 18 digit tetap utuh dan Excel tidak mengganti empat digit terakhir dengan nol.
 
-`product_variation` uses the TikTok SKU value. Unavailable values stay blank. `order_id` is always written as **text** in XLSX—not a number—so 18-digit TikTok Order IDs remain intact and Excel cannot replace trailing digits with zeroes.
+`product_variation` uses the TikTok SKU value. Unavailable values stay blank. `review_date` contains only the review date; extra text such as `Diubah 5 hari yang lalu` is not exported. `order_id` is always written as **text** in XLSX—not a number—so 18-digit TikTok Order IDs remain intact and Excel cannot replace trailing digits with zeroes.
 
 ## Instalasi dan penggunaan / Install and use
 

@@ -12,6 +12,14 @@
   function publish() { chrome.runtime.sendMessage({ type: "status_update", status: snapshot() }).catch(() => {}); }
   function text(card, selector) { return clean(card.querySelector(selector)?.textContent); }
 
+  function reviewDateFromCard(card) {
+    const value = text(card, "[class*='_reviewTime_']");
+    // TikTok may append an edit indicator, for example:
+    // "24 Juli 2026|Diubah 5 hari yang lalu". The report's review_date
+    // column contains only the original review date.
+    return value.replace(/\s*\|?\s*Diubah\s+.*$/i, "").trim();
+  }
+
   function orderIdFromCard(card) {
     const value = text(card, "[class*='_productItemInfoOrderIdText_']");
     return value.replace(/^ID Pesanan\s*:\s*/i, "");
@@ -29,7 +37,7 @@
         product_variation: text(card, "[class*='_productItemInfoSku_']"),
         buyer_id: text(card, "[class*='_userNameText_']"),
         star: card.querySelectorAll("svg[class*='_activeStar_']").length,
-        review_date: text(card, "[class*='_reviewTime_']"),
+        review_date: reviewDateFromCard(card),
         // XLSX writer uses inline strings for every value; never coerce this
         // 18-digit TikTok order ID to a JavaScript or Excel number.
         order_id,
