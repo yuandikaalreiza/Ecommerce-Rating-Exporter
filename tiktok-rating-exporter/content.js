@@ -25,13 +25,17 @@
     return value.replace(/^(ID Pesanan|Order ID)\s*:\s*/i, "");
   }
 
+  function reviewKey(record) {
+    // An order may contain several rated products. Do not use order_id alone:
+    // it would drop valid rows from the same order during pagination.
+    return COLUMNS.map((column) => clean(record[column])).join("\u001f");
+  }
+
   function extractCurrentPage() {
     const records = [];
-    const seen = new Set();
     document.querySelectorAll("[class*='_ratingListItem_']").forEach((card) => {
       const order_id = orderIdFromCard(card);
-      if (!/^\d{10,}$/.test(order_id) || seen.has(order_id)) return;
-      seen.add(order_id);
+      if (!/^\d{10,}$/.test(order_id)) return;
       records.push({
         product_name: text(card, "[class*='_productItemInfoName_']"),
         product_variation: text(card, "[class*='_productItemInfoSku_']"),
@@ -94,7 +98,7 @@
         if (cancelRequested) break;
         const pageRecords = extractCurrentPage();
         if (!pageRecords.length) throw new Error("Rating tidak ditemukan. Muat ulang halaman Rating Produk dan coba lagi. / No rating cards found. Reload the Product Rating page and try again.");
-        pageRecords.forEach((record) => records.set(record.order_id, record));
+        pageRecords.forEach((record) => records.set(reviewKey(record), record));
         state.reviewCount = records.size;
         state.pageCount += 1;
         publish();
