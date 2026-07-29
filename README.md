@@ -1,3 +1,11 @@
+# Ecommerce Rating Exporter / Ekspor Rating Ecommerce
+
+Repository ini berisi dua ekstensi Chrome yang dimuat secara terpisah: Shopee di folder utama dan TikTok di [`tiktok-rating-exporter`](tiktok-rating-exporter/). Masing-masing ekstensi hanya aktif pada Seller Center platformnya sendiri.
+
+This repository contains two separately loadable Chrome extensions: Shopee in the repository root and TikTok in [`tiktok-rating-exporter`](tiktok-rating-exporter/). Each extension runs only on its own platform's Seller Center.
+
+---
+
 # Shopee Shop Rating Exporter / Ekspor Penilaian Toko Shopee
 
 Ekstensi Chrome (Manifest V3) untuk mengekspor ulasan yang tampil di **Shopee Seller Centre → Penilaian Toko** menjadi satu file `.xlsx`. Ekstensi ini tidak melakukan login, meminta kredensial, atau memanggil API privat. Ekstensi memakai halaman yang sudah dibuka dalam sesi Chrome pengguna yang berwenang.

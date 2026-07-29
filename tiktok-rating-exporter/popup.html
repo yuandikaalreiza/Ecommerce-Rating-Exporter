@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TikTok Rating Exporter / Ekspor Rating TikTok</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <h1>Ekspor Rating TikTok <span>/ TikTok Rating Exporter</span></h1>
+      <p class="hint">Atur filter TikTok terlebih dahulu. Ekspor mencakup semua rating yang tampil sesuai filter tersebut.<br>Set TikTok's filters first. The export includes every rating currently shown by those filters.</p>
+      <p id="status" class="status">Memeriksa tab saat ini… / Checking the current tab…</p>
+      <div class="actions">
+        <button id="start" class="primary">Ekspor semua halaman<br><small>Export all pages</small></button>
+        <button id="pause" disabled>Jeda<br><small>Pause</small></button>
+        <button id="stop" disabled>Berhenti<br><small>Stop</small></button>
+      </div>
+      <p class="footnote">Nama file menggunakan tanggal dan waktu pengambilan data. ID Pesanan selalu disimpan sebagai teks.<br>The file uses the collection date and time. Order IDs are always stored as text.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
