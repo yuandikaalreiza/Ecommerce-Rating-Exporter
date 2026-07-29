@@ -17,12 +17,12 @@
     // TikTok may append an edit indicator, for example:
     // "24 Juli 2026|Diubah 5 hari yang lalu". The report's review_date
     // column contains only the original review date.
-    return value.replace(/\s*\|?\s*Diubah\s+.*$/i, "").trim();
+    return value.replace(/\s*\|?\s*(Diubah|Edited)\s+.*$/i, "").trim();
   }
 
   function orderIdFromCard(card) {
     const value = text(card, "[class*='_productItemInfoOrderIdText_']");
-    return value.replace(/^ID Pesanan\s*:\s*/i, "");
+    return value.replace(/^(ID Pesanan|Order ID)\s*:\s*/i, "");
   }
 
   function extractCurrentPage() {
