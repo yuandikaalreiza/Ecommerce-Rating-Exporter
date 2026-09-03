@@ -76,15 +76,34 @@
     return firstByText(card, (text) => DATE_PATTERN.test(text));
   }
 
-  function getReviewMessage(card) {
-    // Read only Shopee's review-text element. The previous broad fallback read
-    // product information when a review card had no buyer message.
-    const message = clean(card.querySelector("div[class*='whitespace-pre-wrap']")?.textContent).replace(/\s*More$/, "");
+  function comparableText(value) {
+    return clean(value).toLocaleLowerCase().replace(/[\s\u200b\ufeff]+/g, "");
+  }
+
+  function isProductMetadata(message, product) {
+    if (!message || !product.product_name) return false;
+    const productName = comparableText(product.product_name);
+    const variation = comparableText(product.product_variation);
+    const candidates = [
+      productName,
+      `${productName}variasi:${variation}`,
+      `${productName}variation:${variation}`
+    ];
+    return candidates.includes(comparableText(message));
+  }
+
+  function getReviewMessage(card, product) {
+    // Shopee puts buyer text in this exact element. Do not fall back to a card
+    // container: blank reviews otherwise become the adjacent product metadata.
+    const reviewNode = card.querySelector("div.break-all.whitespace-pre-wrap");
+    const message = clean(reviewNode?.textContent).replace(/\s*(?:More|Lainnya)$/i, "");
     // Shopee Indonesia may expose only a visual truncation such as
     // "Bagus...Lainnya" instead of the full review. Do not export that
     // incomplete placeholder as though it were a real review message.
     if (/(?:\.{3}|…)\s*Lainnya$/i.test(message) || /^Lainnya$/i.test(message)) return "";
-    return message;
+    // Defensive protection for Shopee layout variants: an empty review must
+    // never be exported as "product name + Variasi".
+    return isProductMetadata(message, product) ? "" : message;
   }
 
   function getSellerResponse(card) {
@@ -109,7 +128,7 @@
         star: getStar(card),
         review_date: dateNode ? clean(dateNode.textContent) : "",
         order_id,
-        review_message: getReviewMessage(card),
+        review_message: getReviewMessage(card, product),
         seller_response: getSellerResponse(card)
       });
     });
